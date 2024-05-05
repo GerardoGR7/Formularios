@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Empleado (Cuidador/Enfermero)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Registrar Empleado (Cuidador/Enfermero)</h2>
+        <form action="/registrar-empleado" method="post">
+            <!-- Información Personal -->
+            <div class="mb-3">
+                <label para="nom_emp" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nom_emp" name="nom_emp" required>
+            </div>
+            <div class="mb-3">
+                <label para="pat_emp" class="form-label">Apellido Paterno</label>
+                <input type="text" class="form-control" id="pat_emp" name="pat_emp" required>
+            </div>
+            <div class="mb-3">
+                <label para="mat_emp" class="form-label">Apellido Materno</label>
+                <input type="text" class="form-control" id="mat_emp" name="mat_emp" required>
+            </div>
+            <div class="mb-3">
+                <label para="tel_emp" class="form-label">Teléfono</label>
+                <input type="text" class="form-control" id="tel_emp" name="tel_emp">
+            </div>
+            <div class="mb-3">
+                <label para="fot_emp" class="form-label">Foto</label>
+                <input type="file" class="form-control" id="fot_emp" name="fot_emp">
+            </div>
+
+            <!-- Datos de Acceso -->
+            <div class="mb-3">
+                <label para="cor_datacc" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="cor_datacc" name="cor_datacc" required>
+            </div>
+            <div class="mb-3">
+                <label para="pas_datacc" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="pas_datacc" name="pas_datacc" required>
+            </div>
+
+            <!-- Tipo de Empleado -->
+            <div class="mb-3">
+                <label para="rol_emp" class="form-label">Rol</label>
+                <select class="form-control" id="rol_emp" name="rol_emp" required>
+                    <option value="cuidador">Cuidador</option>
+                    <option value="enfermero">Enfermero</option>
+                </select>
+            </div>
+
+            <!-- Información de Dirección -->
+            <div class="mb-3">
+                <label para="del_dir" class="form-label">Delegación</label>
+                <input type="text" class="form-control" id="del_dir" name="del_dir">
+            </div>
+            <div class="mb-3">
+                <label para="col_dir" class="form-label">Colonia</label>
+                <input type="text" class="form-control" id="col_dir" name="col_dir">
+            </div>
+            <div class="mb-3">
+                <label para="calle_dir" class="form-label">Calle</label>
+                <input type="text" class="form-control" id="calle_dir" name="calle_dir">
+            </div>
+            <div class circunstancial'>
+                <label para="cp_dir" class="form-label">Código Postal</label>
+                <input type="text" class="form-control" id="cp_dir" name="cp_dir">
+            </div>
+            <div class="mb-3">
+                <label para="ref_dir" class="form-label">Referencia</label>
+                <input type="text" class="form-control" id="ref_dir" name="ref_dir">
+            </div>
+
+            <!-- Datos Profesionales -->
+            <div class="mb-3">
+                <label para="cedu_prof" class="form-label">Cédula Profesional</label>
+                <input type="text" class="form-control" id="cedu_prof" name="cedu_prof">
+            </div>
+            <div class="mb-3">
+                <label para="cert_prof" class="form-label">Certificados</label>
+                <input type="text" class="form-control" id="cert_prof" name="cert_prof">
+            </div>
+            <div class="mb-3">
+                <label para="ine_prof" class="form-label">INE</label>
+                <input type="text" class="form-control" id="ine_prof" name="ine_prof">
+            </div>
+            <div class="mb-3">
+                <label para="comdom_prof" class="form-label">Comprobante de Domicilio</label>
+                <input type="text" class="form-control" id="comdom_prof" name="comdom_prof">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+
+        <% if(typeof validaciones != 'undefined') { %>
+            <% validaciones.forEach( (validacion)=> { %>                 
+              <div class="toast-container">
+            <div class="toast" role="alert" aria-live="assertive" data-bs-autohide="false">
+                <div class="toast-header">
+                  <svg class="bd-placeholder-img rounded me-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#007aff"></rect></svg>
+                  <strong class="me-auto">¡Atención!</strong>                 
+                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                  <strong><%= validacion.msg %></strong> 
+                </div>
+            </div>
+              </div>              
+              <% }) %>
+          <% } %>
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+      var toastList = toastElList.map(function(toastEl) {    
+      return new bootstrap.Toast(toastEl)
+      });
+      toastList.forEach(toast => toast.show());
+    });
+    </script>
+    
+</body>
+</html>
