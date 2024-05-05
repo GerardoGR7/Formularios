@@ -17,81 +17,75 @@
     <div class="container mt-5">
         <h2>Registrar Paciente</h2>
         <form action="/registrar-paciente" method="post" enctype="multipart/form-data">
-            <!-- Información Personal -->
+            <!-- Información del Paciente -->
             <div class="mb-3">
                 <label for="nom_pac" class="form-label">Nombre Completo</label>
-                <input type="text" class="form-control" id="nom_pac" name="nom_pac"  value="<% if(typeof valores != 'undefined' ) { %><%= valores.nom_pac %><% } %>">
+                <input type="text" class="form-control" id="nom_pac" name="nom_pac" value="<% if(typeof valores != 'undefined' ) { %><%= valores.nom_pac %><% } %>">
             </div>
             <div class="mb-3">
                 <label for="pat_pac" class="form-label">Apellido Paterno</label>
-                <input type="text" class="form-control" id="pat_pac" name="pat_pac"  value="<% if(typeof valores != 'undefined' ) { %><%= valores.pat_pac %><% } %>">
+                <input type="text" class="form-control" id="pat_pac" name="pat_pac" value="<% if(typeof valores != 'undefined' ) { %><%= valores.pat_pac %><% } %>">
             </div>
             <div class="mb-3">
                 <label for="mat_pac" class="form-label">Apellido Materno</label>
-                <input type="text" class="form-control" id="mat_pac" name="mat_pac"  value="<% if(typeof valores != 'undefined' ) { %><%= valores.mat_pac %><% } %>">
+                <input type="text" class="form-control" id="mat_pac" name="mat_pac" value="<% if(typeof valores != 'undefined' ) { %><%= valores.mat_pac %><% } %>">
             </div>
             <div class="mb-3">
                 <label for="fot_pac" class="form-label">Foto</label>
                 <input type="file" class="form-control" id="fot_pac" name="fot_pac">
             </div>
-        
+
             <!-- Historial Médico -->
             <div class="mb-3">
-                <label for="medicamentos" class="form-label">Medicamentos</label>
-                <input type="text" class="form-control" id="medicamentos" name="medicamentos" value="<% if(typeof valores != 'undefined' ) { %><%= valores.medicamentos %><% } %>">
+                <label for="med_hm" class="form-label">Medicamentos</label>
+                <textarea class="form-control" id="med_hm" name="med_hm" value="<% if(typeof valores != 'undefined' ) { %><%= valores.med_hm %><% } %>"></textarea>
             </div>
             <div class="mb-3">
-                <label for="descripcion" class="form-label">Descripción Médica</label>
-                <input type="text" class="form-control" id="descripcion" name="descripcion" value="<% if(typeof valores != 'undefined' ) { %><%= valores.descripcion %><% } %>">
+                <label for="des_hm" class="form-label">Descripción Médica</label>
+                <textarea class="form-control" id="des_hm" name="des_hm" value="<% if(typeof valores != 'undefined' ) { %><%= valores.des_hm %><% } %>"></textarea>
             </div>
             <div class="mb-3">
-                <label for="tratamiento" class="form-label">Tratamiento</label>
-                <input type="text" class="form-control" id="tratamiento" name="tratamiento" value="<% if(typeof valores != 'undefined' ) { %><%= valores.tratamiento %><% } %>">
+                <label for="trat_hm" class="form-label">Tratamiento</label>
+                <textarea class="form-control" id="trat_hm" name="trat_hm" value="<% if(typeof valores != 'undefined' ) { %><%= valores.trat_hm %><% } %>"></textarea>
             </div>
             <div class="mb-3">
-                <label for="receta_medica" class="form-label">Receta Médica</label>
-                <input type="file" class="form-control" id="receta_medica" name="receta_medica">
+                <label for="rec_hm" class="form-label">Receta Médica</label>
+                <input type="file" class="form-control" id="rec_hm" name="rec_hm">
             </div>
-        
-            <!-- Referencia al Usuario que Registra -->
+
+            <!-- Identificadores de Relaciones -->
             <div class="mb-3">
-                <label for="user_id" class="form-label">ID del Usuario</label>
-                <input type="number" class="form-control" id="user_id" name="user_id" value="<% if(typeof valores != 'undefined' ) { %><%= valores.user_id %><% } %>">
+                <label for="id_us" class="form-label">ID del Usuario</label>
+                <input type="number" class="form-control" id="id_us" name="id_us" value="<% if(typeof valores != 'undefined' ) { %><%= valores.id_us %><% } %>">
             </div>
-        
+
+            <!-- Botón para Registrar -->
             <button type="submit" class="btn btn-primary">Registrar</button>
         </form>
-        
 
-        <% if(typeof validaciones != 'undefined') { %>
-            <% validaciones.forEach( (validacion)=> { %>                 
-              <div class="toast-container">
-            <div class="toast" role="alert" aria-live="assertive" data-bs-autohide="false">
-                <div class="toast-header">
-                  <svg class="bd-placeholder-img rounded me-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#007aff"></rect></svg>
-                  <strong class="me-auto">¡Atención!</strong>                 
-                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        <!-- Validaciones -->
+        <% if (typeof validaciones !== 'undefined') { %>
+            <% validaciones.forEach(validacion => { %>
+                <div class="toast" role="alert" aria-live="assertive" data-bs-autohide="false">
+                    <div class="toast-header">
+                        <strong class="me-auto">¡Atención!</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="toast-body">
+                        <strong><%= validacion.msg %></strong>
+                    </div>
                 </div>
-                <div class="toast-body">
-                  <strong><%= validacion.msg %></strong> 
-                </div>
-            </div>
-              </div>              
-              <% }) %>
-          <% } %>
+            <% }); %>
+        <% } %>
     </div>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-      var toastList = toastElList.map(function(toastEl) {    
-      return new bootstrap.Toast(toastEl)
-      });
-      toastList.forEach(toast => toast.show());
-    });
+        document.addEventListener('DOMContentLoaded', function () {
+            var toastList = Array.from(document.querySelectorAll('.toast')).map(toastEl => new bootstrap.Toast(toastEl));
+            toastList.forEach(toast => toast.show());
+        });
     </script>
-    
 </body>
 </html>
