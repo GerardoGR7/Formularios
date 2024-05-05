@@ -6,11 +6,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
-// Índice para moverse entre formularios
-app.get('/', (req, res) => {
-    res.render('index');
-});
-
 // Ruta para el índice
 app.get('/', (req, res) => {
     res.render('index');
