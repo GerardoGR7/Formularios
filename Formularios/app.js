@@ -36,12 +36,13 @@ app.post('/registrar-usuario', [
     body('mat_us', 'Apellido materno obligatorio').exists().isLength({ min: 3 }),
     body('cor_datacc', 'Ingrese un E-mail válido').exists().isEmail(),
     body('pas_datacc', 'Contraseña debe ser al menos de 6 caracteres').exists().isLength({ min: 6 })
+    
 ], (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         const valores = req.body;
         const validaciones = errors.array();
-        return res.render('registro-usuario', { validaciones, valores });
+        return res.render('registrar-usuario', { validaciones, valores });
     }
     res.send('¡Usuario registrado con éxito!');
 });
@@ -59,25 +60,12 @@ app.post('/registrar-empleado', [
     if (!errors.isEmpty()) {
         const valores = req.body;
         const validaciones = errors.array();
-        return res.render('registro-empleado', { validaciones, valores });
+        return res.render('registrar-empleado', { validaciones, valores });
     }
     res.send('¡Empleado registrado con éxito!');
 });
 
 // Validaciones para registro de paciente
-app.post('/registrar-paciente', [
-    body('nom_pac', 'El nombre es obligatorio').exists().isLength({ min: 3 }),
-    body('pat_pac', 'Apellido paterno obligatorio').exists().isLength({ min: 3 }),
-    body('mat_pac', 'Apellido materno obligatorio').exists().isLength({ min: 3 })
-], (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        const valores = req.body;
-        const validaciones = errors.array();
-        return res.render('registro-paciente', { validaciones, valores });
-    }
-    res.send('¡Paciente registrado con éxito!');
-});
 
 app.post('/registrar-paciente', [
     body('nom_pac', 'El nombre es obligatorio').exists().isLength({ min: 3 }),
@@ -93,7 +81,7 @@ app.post('/registrar-paciente', [
     if (!errors.isEmpty()) {
         const valores = req.body;
         const validaciones = errors.array();
-        return res.render('registro-paciente', { validaciones, valores });
+        return res.render('registrar-paciente', { validaciones, valores });
     }
     res.send('¡Paciente registrado con éxito!');
 });

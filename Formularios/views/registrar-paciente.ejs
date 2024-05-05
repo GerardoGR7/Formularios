@@ -16,51 +16,52 @@
 <body>
     <div class="container mt-5">
         <h2>Registrar Paciente</h2>
-        <form action="/registrar-paciente" method="post">
+        <form action="/registrar-paciente" method="post" enctype="multipart/form-data">
             <!-- Información Personal -->
             <div class="mb-3">
-                <label para="nom_pac" class="form-label">Nombre Completo</label>
-                <input type="text" class="form-control" id="nom_pac" name="nom_pac" required>
+                <label for="nom_pac" class="form-label">Nombre Completo</label>
+                <input type="text" class="form-control" id="nom_pac" name="nom_pac"  value="<% if(typeof valores != 'undefined' ) { %><%= valores.nom_pac %><% } %>">
             </div>
             <div class="mb-3">
-                <label para="pat_pac" class="form-label">Apellido Paterno</label>
-                <input type="text" class="form-control" id="pat_pac" name="pat_pac" required>
+                <label for="pat_pac" class="form-label">Apellido Paterno</label>
+                <input type="text" class="form-control" id="pat_pac" name="pat_pac"  value="<% if(typeof valores != 'undefined' ) { %><%= valores.pat_pac %><% } %>">
             </div>
             <div class="mb-3">
-                <label para="mat_pac" class="form-label">Apellido Materno</label>
-                <input type="text" class="form-control" id="mat_pac" name="mat_pac" required>
+                <label for="mat_pac" class="form-label">Apellido Materno</label>
+                <input type="text" class="form-control" id="mat_pac" name="mat_pac"  value="<% if(typeof valores != 'undefined' ) { %><%= valores.mat_pac %><% } %>">
             </div>
             <div class="mb-3">
-                <label para="fot_pac" class="form-label">Foto</label>
+                <label for="fot_pac" class="form-label">Foto</label>
                 <input type="file" class="form-control" id="fot_pac" name="fot_pac">
             </div>
-
+        
             <!-- Historial Médico -->
             <div class="mb-3">
-                <label para="medicamentos" class="form-label">Medicamentos</label>
-                <input type="text" class="form-control" id="medicamentos" name="medicamentos">
+                <label for="medicamentos" class="form-label">Medicamentos</label>
+                <input type="text" class="form-control" id="medicamentos" name="medicamentos" value="<% if(typeof valores != 'undefined' ) { %><%= valores.medicamentos %><% } %>">
             </div>
             <div class="mb-3">
-                <label para="descripcion" class="form-label">Descripción Médica</label>
-                <input type="text" class="form-control" id="descripcion" name="descripcion">
+                <label for="descripcion" class="form-label">Descripción Médica</label>
+                <input type="text" class="form-control" id="descripcion" name="descripcion" value="<% if(typeof valores != 'undefined' ) { %><%= valores.descripcion %><% } %>">
             </div>
             <div class="mb-3">
-                <label para="tratamiento" class="form-label">Tratamiento</label>
-                <input type="text" class="form-control" id="tratamiento" name="tratamiento">
+                <label for="tratamiento" class="form-label">Tratamiento</label>
+                <input type="text" class="form-control" id="tratamiento" name="tratamiento" value="<% if(typeof valores != 'undefined' ) { %><%= valores.tratamiento %><% } %>">
             </div>
             <div class="mb-3">
-                <label para="recetas" class="form-label">Recetas</label>
-                <input type="text" class="form-control" id="recetas" name="recetas">
+                <label for="receta_medica" class="form-label">Receta Médica</label>
+                <input type="file" class="form-control" id="receta_medica" name="receta_medica">
             </div>
-
+        
             <!-- Referencia al Usuario que Registra -->
             <div class="mb-3">
-                <label para="user_id" class="form-label">ID del Usuario</label>
-                <input type="number" class="form-control" id="user_id" name="user_id" required>
+                <label for="user_id" class="form-label">ID del Usuario</label>
+                <input type="number" class="form-control" id="user_id" name="user_id" value="<% if(typeof valores != 'undefined' ) { %><%= valores.user_id %><% } %>">
             </div>
-
+        
             <button type="submit" class="btn btn-primary">Registrar</button>
         </form>
+        
 
         <% if(typeof validaciones != 'undefined') { %>
             <% validaciones.forEach( (validacion)=> { %>                 
